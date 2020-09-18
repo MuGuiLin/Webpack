@@ -1,0 +1,20 @@
+{
+  "name": "my-webapck",
+  "version": "1.0.0",
+  "description": "Webpack学习研究",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [
+    "webapck",
+    "webapck-cli"
+  ],
+  "author": "沐枫",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}

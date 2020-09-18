@@ -1,0 +1,306 @@
+webpack 4.12 新的不同点。
+
+【注：webpack 和webpack-cli分离开了，所以全局安装完webpack 还需要安装webpack-cli。
+
+执行webpack a.js b.js 是把a打包成b，但是会报错。CLI（命令行工具）已经转移到了一个单独的包webpack-cli中。
+
+
+除了webpack自身外，请额外全局安装webpack-cli来使用CLI。执行npm uninstall webpack-cli npm install -g webpack-cli】
+
+
+
+1、mkdir 项目目录名 && cd 项目目录名  			//创建项目目录，并进放该目录
+
+2、npm init -y						//快速初始化 package.json 文件 【如果您使用的是npm 5，您可能还会package-lock.json在目录中看到一个文件。】
+
+3、npm install webpack webpack-cli -D		//在项中安装 webpack 和 webpack-cli 工具   -D 就是 --save-dev 的简写
+
+4、在项目的创建 src 和 dist 目录:
+
+目录结构，将“源”代码（/src）【“源”代码是我们编写和编辑的代码。】
+
+与
+
+我们的“分发”代码（/dist）【“分发”代码是output我们的构建过程的最小化和优化，最终将在浏览器中加载】
+
+这两个分开
+
+src/index.js						//默认打包入口文件
+
+dist/index.html						//首页  在文件中添加  <script src="main.js"></script>  打包成功后会在dist目录下生成main.js文件
+
+
+要捆绑lodash依赖项index.js，我们需要在本地安装库：lodash
+
+5、npm install --save lodash
+
+6、运行npx webpack，它将我们的脚本src/index.js作为入口点，并将生成dist/main.js作为输出【注：这是在没有配置 webpack.config.js文件时，的打包方法】
+
+
+js中 import和export报表已标准化，ES2015和在大多数浏览器都支持。一些旧的浏览器仍然落后，但webpack支持开箱即用的模块。在幕后，webpack实际上“转换”了代码，以便旧版浏览器也可以运行它。如果您检查一下dist/main.js，您可能会看到webpack如何做到这一点，它非常巧妙！除了import和export，的WebPack支持各种其他模块语法。【注意：WebPack不会改变比其他任何代码import和export语句。如果你使用的是其他ES2015功能】。
+
+
+
+使用配置：webpack.config.js
+
+从版本webpack4开始，webpack不需要任何配置，【但大多数项目需要更复杂的设置，这就是webpack支持配置文件的原因】。
+
+这比在终端中手动输入大量命令要高效得多，所以让我们创建一个替换上面使用的CLI行选项：
+
+在项目根目录下：创建：webpack.config.js
+
+内容：
+
+const path = require('path');
+
+module.exports = {
+    entry: './src/index.js',               	// 入口文件
+    output: {
+	filename: 'main.js',			//输出文件 这样：filename: '[name].js', 就是原来叫什么名打包后就叫什么
+    	path: path.resolve(__dirname, 'dist')	//输出目录
+    },              				// 出口文件
+    module: {},              			// 处理对应模块
+    plugins: [],             			// 对应的插件
+    devServer: {},           			// 开发服务器配置
+    mode: 'development'      			// 模式配置
+}
+
+【多入口文件】：多个入口可以有两种实现方式进行打包：
+
+1、没有关系的但是要打包到一起去的可以写一个数组，实现多个文件打包 【合并：entry: ['./src/index.js', './src/login.js', './src/...js']】。
+
+2、每一个文件都单独打包成一个文件的。
+
+let path = require('path');
+
+module.exports = {
+    // 1.写成数组的方式就可以打出多入口文件，不过这里打包后的文件都合成了一个
+    entry: ['./src/index.js', './src/login.js'],
+
+    // 2.真正实现多入口和多出口需要写成对象的方式
+    entry: {
+        index: './src/index.js',
+        login: './src/login.js'
+    },
+    output: {
+        // 1. filename: 'bundle.js',
+        // 2. [name]就可以将出口文件名和入口文件名一一对应
+	// 3. [name].[hash:4].js		// 添加hash可以防止文件缓存，每次都会生成4位不同的hash串
+        filename: '[name].[hash:4].js',      	// 打包后会生成index.js和login.js文件, 
+        path: path.resolve('dist')
+    }
+}
+
+
+【配置Html模板】
+文件都打包好了，但是我们在使用的时候不能在dist目录下去创建一个html文件，然后去引用打包后的js吧，这不合理，实际开发中也不会这样
+
+我们需要实现html打包功能，可以通过一个模板实现打包出引用好路径的html来
+
+这就需要用到一个常用的插件了，html-webpack-plugin，用之前我们来安一下它
+
+npm i html-webpack-plugin -D
+
+因为是个插件，所以需要在webpack.config.js里引用一下的
+
+
+let path = require('path');
+
+let HtmlWebpackPlugin = require('html-webpack-plugin');  // 插件都是一个类，所以我们命名的时候尽量用大写开头
+
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        // 添加hash可以防止文件缓存，每次都会生成4位的hash串
+        filename: 'bundle.[hash:4].js',   
+        path: path.resolve('dist')
+    },
+    plugins: [
+        // 通过new一下这个类来使用插件
+        new HtmlWebpackPlugin({
+            // 用哪个html作为模板
+            // 在src目录下创建一个index.html页面当做模板来用
+            template: './src/index.html',
+            hash: true, // 会在打包好的bundle.js后面加上hash串
+        })
+    ]
+}
+
+
+【多页面开发，怎么配置多页面】
+如果开发的时候不只一个页面，我们需要配置多页面，那么需要怎么来搞呢？不用担心，html-webpack-plugin插件自有办法，我们来观望一下
+
+let path = require('path');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    // 多页面开发，怎么配置多页面
+    entry: {
+        index: './src/index.js',
+        login: './src/login.js'
+    },
+    // 出口文件  
+    output: {                       
+        filename: '[name].js',
+        path: path.resolve('dist')
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',   
+            filename: 'index.html',
+            chunks: ['index']   // 对应关系,index.js对应的是index.html
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/login.html',
+            filename: 'login.html',
+            chunks: ['login']   // 对应关系,login.js对应的是login.html
+        })
+    ]
+}
+
+
+
+
+现在，让我们再次运行构建，现在是使用我们的新配置文件：
+
+npx webpack --config webpack.config.js  【打包】
+
+
+如果webpack.config.js存在，则webpack命令默认选择它。我们在--config此处使用此选项仅表示您可以传递任何名称的配置。
+
+这对于需要拆分为多个文件的更复杂配置非常有用。
+
+配置文件比简单的CLI使用具有更大的灵活性。我们可以通过这种方式指定加载器规则，插件，解析选项和许多其他增强功能。
+
+
+
+鉴于从CLI运行webpack的本地副本npx webpack --config webpack.config.js 太长了，并不是特别有趣，我们可以设置一个小捷径。让我们通过添加一个npm脚本来调整我们的package.json：
+
+package.json 中添加: "build": "webpack"
+ "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
++     "build": "webpack"
+    },
+
+
+//这是完整 package.json 内容
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    //"build": "webpack"
+    "db": "webpack"      //这个命令可以自己改的哦，这里我在改成了 db 就是打包的首写
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
+
+npm run build 	【这是推荐用法】	// 可以使用该npx命令代替我们之前使用的命令如：npx webpack ，      npx webpack --config webpack.config.js 这两种打包命令了
+
+【请注意，scripts我们可以按照与之相同的方式引用本地安装的npm软件包npx。这个约定是大多数基于npm的项目的标准，
+
+因为它允许所有贡献者使用相同的一组公共脚本（每个脚本都有--config必要的标记）。】
+
+
+
+【加载CSS】
+ 
+为了import从一个JavaScript模块中的CSS文件，你需要安装和添加风格装载机和CSS-装载到您的module配置：
+
+npm install --save-dev style-loader css-loader  //为了打包加载css文件，需要依赖 style-loader 和 css-loader 这两个模块
+
+
+1、在webpack.config.js 中添加以下配置
+   module: {
++     rules: [
++       {
++         test: /\.css$/,	//webpack使用正则表达式来确定它应该查找哪些文件并将其提供给特定的加载器。在这种情况下，任何以...结尾的文件.css都将被提供给style-loader和css-loader。
++         use: [
++           'style-loader',
++           'css-loader'
++         ]
++       }
++     ]
++   }
+
+
+2、在需要样式的js模块中的头顶部 添加: import './css/base.css'; 【注：就目前看来，css在打包时，也被包在js文中了，在载入时自动插入到head中】
+
+
+
+
+【加载image】
+
+要添加图像如背景和图标呢等，就要使用文件加载器，我们也可以轻松地将它们合并到我们的系统中：
+
+npm install --save-dev file-loader	//加载文件模块
+
+1、在webpack.config.js 中添加以下配置
+
+    module: {
+        rules: [
+            {
+                test: /\.css$/,                     //webpack使用正则表达式来确定它应该查找哪些文件并将其提供给特定的加载器。在这种情况下，任何以...结尾的文件.css都将被提供给style-loader和css-loader。
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,       //加载图片
+                use: [
+                    'file-loader'
+                ]
+            
+            }
+        ]
+    }
+
+2、在css文件中就直接用，在js文件中import Icon from './img/icon.png';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
