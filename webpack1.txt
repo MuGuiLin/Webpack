@@ -1,0 +1,64 @@
+======== webapck的安装 ========
+
+1、安装node环境：https://nodejs.org/en/ 
+
+2、安装yarn工具：https://yarn.bootcss.com/
+
+3、新建项目目录：在命令窗口中：mkdir iDitor(名字自定义)  然后：cd iDitor 进入该目录
+
+4、初始化 npm init -y //(安装成功后，目录中会多一个package.json文件) 
+
+5、安装webapck和webpack-cli： yarn add webpack webpack-cli --save-dev  //--save-dev 可以用-D 来表示宿写
+
+6、在package.json的scritp中：添加"build": "webpack"
+
+7、删除webapck和webpack-cli：npm uninstall -g webpack，npm uninstall -g webpack-cli
+
+
+
+
+======== webpack配置文件：webpack.config.js ========
+
+注：webpack.config.js 是需要自动手动创建的(注意名字不要拼错了哈！！)，基本内容如下：
+
+'use strict';
+
+const path = require('path');	// path 是 node.js的模块，webpack由node.js写成
+
+// console.log(path);
+
+
+
+-------- 单入口配置--------
+	entry: ‘是一个字符串’
+
+module.exports ={
+	entry: './src/index.js',			// 主入口文件  
+	output: {
+		filename: 'mupiao.js',			// 输出文件名
+		path: path.join(__dirname, 'dist')	// 输出路径
+	},
+	mode: 'production'
+};
+
+
+
+-------- 多入口配置--------
+	entry: {key: value}是一个对象
+
+module.exports = {
+    entry: {
+        index: './src/js/index.js',
+        info: './src/js/info.js'
+    },
+    output: {
+        //注：如果不指定filename，和 path 时，webpack会自动生成一个dist的目录，文件会对应入口文件
+
+        filename: '[name].js',  // 注：filename: 不能是fileName，不然会报错
+        // path: path.join(__dirname, 'build')
+        path: path.resolve(__dirname, 'mupiao'),    // join 和 resolve 都行
+    },
+    mode: 'development'     // 注：环境也要指定不然会报错
+};
+
+npm run build  	//打包

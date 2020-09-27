@@ -2,7 +2,9 @@
 
 ### 1、webpack简介
 
-[webpack英文文档](https://webpack.js.org)，[webpack中文文档](https://www.webpackjs.com)
+[webpack英文文档](https://webpack.js.org)，[webpack中文文档1](https://webpack.docschina.org)，[webpack中文文档2](https://www.webpackjs.com)
+
+[思维导图 https://www.processon.com/view/5f65539d6376894e3278e0d8#map](https://www.processon.com/view/5f65539d6376894e3278e0d8#map)
 
 > Webpack是⼀个打包模块化JavaScript的⼯具，它会从**⼊⼝模块出发**，识别出源码中的模块化导⼊语句，递 归地找出⼊⼝⽂件的所有依赖，将⼊⼝和其所有的依赖打包到⼀个单独的⽂件中。
 >
@@ -20,7 +22,7 @@
 
 webpack是基于nodejs环境来运行的，所以在安装使用webpack之前要先安装nodejs环境，建议安装最新稳定（LTS）版NodeJs。
 
-下载地址： 英文 [https://nodejs.org/en](https://nodejs.org/en)，中文 [https://nodejs.org/zh-cn](https://nodejs.org/zh-cn)
+NodeJs下载地址： 英文 [https://nodejs.org/en](https://nodejs.org/en)，中文 [https://nodejs.org/zh-cn](https://nodejs.org/zh-cn)
 
 
 
@@ -128,18 +130,18 @@ npx webpack-cli -v
  **注：webpack打包需要一个入口文件，默认情况下 src/index.js 是webpack的入口文件**
 
 ```js
-### data.json
+# data.json
 {
     "name": "JOSN",
     "age": 28
 }
 
-### other.js
+# other.js
 export function sum(n1, n2) {
     return n1 + n2;
 };
 
-### index.js
+# index.js
 const json = require("./data.json");	//CommonJS 方式
 import { sum } from "./other.js";		//ES Module 方式
 console.log('Hello Webpack：', json, sum(2, 3));
@@ -184,11 +186,23 @@ npm run build  # build 就是上面自定义的打包命令名字，可以自定
 
 #### 3.5、默认配置 
 
-在webpack4.x以后，说是零配置打包（其是零配置是很弱的，如果在有特定的需求时，我们总是需要⾃⼰进⾏配置的），所以webpack也提供了一个默认的配置⽂件，叫 **webpack.config.js** 。
+在webpack4.x以后，说是零配置打包（其是零配置是很弱的，如果在有特定的需求时，我们总是需要⾃⼰进⾏配置的），所以webpack也提供了一个默认的自定义配置⽂件，叫 **webpack.config.js** 。
 
 我们可以对这个⽂件进⾏修改，进⾏个性化配 置因为它做的默认配置，在webpack.config.js中我们可以对webpack进行一系列配置！
 
-注：如果不想使⽤webpack.config.js这配置⽂件名也是可以修改的： ⽐如改为my-webpack.js，就可以通过 --my-webpack.js来指定 webpack使⽤哪个配置⽂件来执⾏构建。
+**注：如果不想使⽤webpack.config.js这配置⽂件名也是可以修改的： ⽐如改为my-webpack-config.js，通过修改package.json文件中的 --config 来指定 webpack使⽤哪个配置⽂件来执⾏构建。**
+
+```js
+// 修改package.json文件，在scripts选项中 配置 "build": "webpack --config ./my-webpack-config.js"
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./my-webpack-config.js"
+  },
+```
+
+通过以上修改后，在执行npm run build命令时，webpack就会去执行my-webpack-config.js文件中的配置啦！！
+
+
 
 默认情况下webpack.config.js这个文件是不存在的，所以要在和package.json平级的目录中，创建一个名为webpack.config.js的文件（这里文件名也是可以自定义的，只是webpack在构建时会先去找默认的webpack.config.js文件），用于存放webpack的配置信息，以下是webpack的基础配置结构：
 
@@ -294,3 +308,44 @@ module.exports = {
 ```
 
 为了便于查看打包后的test.js代码，配置mode: "development"后，在构建时就不会出现警告，test.js中的代码也不到被压缩和丑化啦！！
+
+
+
+## Webpack 配置项
+
+```js
+module.exports =  { 
+    amd?, 
+    bail?, 
+    cache?, 
+    context?, 
+    dependencies?, 
+    devServer?, 
+    devtool?, 
+    entry?, 
+    externals?, 
+    infrastructureLogging?, 
+    loader?, 
+    mode?, 
+    module?, 
+    name?, 
+    node?, 
+    optimization?, 
+    output?, 
+    parallelism?, 
+    performance?, 
+    plugins?, 
+    profile?, 
+    recordsInputPath?, 
+    recordsOutputPath?, 
+    recordsPath?, 
+    resolve?, 
+    resolveLoader?, 
+    serve?, 
+    stats?, 
+    target?, 
+    watch?, 
+    watchOptions? 
+}
+```
+

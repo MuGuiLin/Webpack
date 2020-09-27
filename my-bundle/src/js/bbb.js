@@ -1,0 +1,1 @@
+export const rmb = 666

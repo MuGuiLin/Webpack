@@ -1,0 +1,13 @@
+body {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    background-color: blueviolet;
+}
+h1{
+    line-height: 60px;
+}
+a{
+    color: yellow;
+    font-size: 24px;
+}

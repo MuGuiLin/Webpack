@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack ",
+    "start": "webpack --config ./my-webpack-config.js",
+    "参数说明": " --config 参数表示指定 webpack 在构建时的 配置文件"
   },
   "keywords": [
     "webapck",
@@ -14,6 +16,10 @@
   "author": "沐枫",
   "license": "ISC",
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.3.0",
+    "html-webpack-plugin": "^4.4.1",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   }
