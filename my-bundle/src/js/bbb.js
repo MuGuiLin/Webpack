@@ -1,1 +1,4 @@
-export const rmb = 666
+export const rmb = 666;
+
+import { time } from './time.js';
+time();
