@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <div class="article">
+                        <div class="mbs">
+                            <h3>通知</h3>
+                        </div>
+                        <div class="content">
+                            <ul class="list-item">
+                                <li>
+                                    <h4>iHub 2.0 全新登场！
+                                        <span>2018-06-08
+                                            <i></i>
+                                        </span>
+                                    </h4>
+                                    <div>
+                                        <p>现在iHub全互动云支持在互动流程中任意设置图文介绍页面啦！模板前模板后都可添加，不限模板，不限次数，就算串成连环画都行。赶快丰富你的互动活动吧！请进入互动模板
+                                            <span>
+                                                <a href="">查看详情</a>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="on">
+                                    <h4>iHub 2.0 用户使用手册更新
+                                        <span>2018-06-08
+                                            <i></i>
+                                        </span>
+                                    </h4>
+                                    <div>
+                                        <p>现在iHub全互动云支持在互动流程中任意设置图文介绍页面啦！模板前模板后都可添加，不限模板，不限次数，就算串成连环画都行。赶快丰富你的互动活动吧！请进入互动模板
+                                            <span>
+                                                <a href="">查看详情</a>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>用户数据中心新增用户参与活动记录及互动详情
+                                        <span>2018-06-08
+                                            <i></i>
+                                        </span>
+                                    </h4>
+                                    <div>
+                                        <p>现在iHub全互动云支持在互动流程中任意设置图文介绍页面啦！模板前模板后都可添加，不限模板，不限次数，就算串成连环画都行。赶快丰富你的互动活动吧！请进入互动模板
+                                            <span>
+                                                <a href="">查看详情</a>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>图文模块上线
+                                        <span>2018-06-08
+                                            <i></i>
+                                        </span>
+                                    </h4>
+                                    <div>
+                                        <p>现在iHub全互动云支持在互动流程中任意设置图文介绍页面啦！模板前模板后都可添加，不限模板，不限次数，就算串成连环画都行。赶快丰富你的互动活动吧！请进入互动模板
+                                            <span>
+                                                <a href="">查看详情</a>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4>投票模块更新，投票显示结果可选择不显示
+                                        <span>2018-06-08
+                                            <i></i>
+                                        </span>
+                                    </h4>
+                                    <div>
+                                        <p>现在iHub全互动云支持在互动流程中任意设置图文介绍页面啦！模板前模板后都可添加，不限模板，不限次数，就算串成连环画都行。赶快丰富你的互动活动吧！请进入互动模板
+                                            <span>
+                                                <a href="">查看详情</a>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

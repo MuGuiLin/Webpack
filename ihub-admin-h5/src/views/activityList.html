@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <!-- notadopt未通过-->
+                    <div class="mbs">
+                        <h3>活动
+                            <li class="search">
+                                <input type="text" placeholder="活动名称">
+                                <i></i>
+                                <label></label>
+                            </li>
+                        </h3>
+                    </div>
+                    <div class="content">
+                        <div class="list-item">
+                            <h4 class="operate">活动列表
+                                <span class="add">
+                                    <a href="./addActivity.html">新建活动</a>
+                                </span>
+                            </h4>
+                            <!-- item部分 -->
+                            <dl data-id="1">
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <span>2018-05-23 08:00</span>
+                                            <span>~</span>
+                                            <span>2018-06-05 08:00</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <img src="../assets/img/list-icon.png">
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <span>东方财经·浦东频道打造“浦东开发开放28周...</span>
+                                        <span>
+                                            <button class="success on">提交审核</button>
+                                            <button class="exit off">删除</button>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="info flow">未提交</span>
+                                        <span class="operate">
+                                            <i>提交</i>2018-05-25 12:30</span>
+                                    </li>
+                                    <li>
+                                        <span class="btnFlow">
+                                            <button class="f">注册</button>
+                                            <button class="f">投票</button>
+                                            <button class="f">抽奖</button>
+                                            <span>
+                                                <button class="to">查看</button>
+                                                <button class="to toPreview">预览</button>
+                                            </span>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <!-- 流程显示 -->
+                                <div class="flow-item">
+                                    <div class="top">
+                                        <div>
+                                            <i></i>
+                                        </div>
+                                        <dl>
+                                            <li>
+                                                <button>运营</button>
+                                            </li>
+                                            <li>
+                                                <button>一审通过</button>
+                                            </li>
+                                            <li>
+                                                <button>二审通过</button>
+                                            </li>
+                                            <li>
+                                                <button>三审通过</button>
+                                            </li>
+                                            <li>
+                                                <button>四审通过</button>
+                                            </li>
+                                        </dl>
+                                    </div>
+                                    <dl>
+                                        <li>
+                                            <label>运营</label>
+                                            <span>2018-05-23 18:30</span>
+                                            <label>王某某</label>
+                                            <span>“请领导审核”</span>
+                                        </li>
+                                        <li>
+                                            <label>一审</label>
+                                            <span>2018-05-23 18:30</span>
+                                            <label>王某某</label>
+                                            <span>“想法很不错 👍 后续继续深入挖掘。”</span>
+                                        </li>
+                                        <li>
+                                            <label>二审</label>
+                                            <span>2018-05-23 18:30</span>
+                                            <label>欧阳何琪老师</label>
+                                            <span>“每个专栏编辑都有自己的特色，但并不等于这专栏的编辑就是百事通，样样在行、门门精通，能做到如此程度已是幸甚。”</span>
+                                        </li>
+                                        <li>
+                                            <label>三审</label>
+                                            <span>2018-05-23 18:30</span>
+                                            <label>王某某</label>
+                                            <span>“理论基本知识厚实，善于创新！”</span>
+                                        </li>
+                                    </dl>
+                                    <i class="arrow"></i>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                    <!-- dialog -->
+                    <div class="dialog operation">
+                        <div class="content">
+                            <h3>
+                                <span class="t">确认退回</span>
+                                <span class="exit"></span>
+                            </h3>
+                            <ul>
+                                <li>
+                                    <span>审核意见</span>
+                                    <i class="info"></i>
+                                </li>
+                                <li>
+                                    <textarea id="checkedText"></textarea>
+                                    <span>
+                                        <i>0</i>
+                                        <sub>/</sub>108</span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <button id="post"></button>
+                                    <button class="exit">取消</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 预览 -->
+                    <div class="dialog preview">
+                        <div class="content">
+                            <h3>
+                                <span>预览</span>
+                                <span class="exit"></span>
+                            </h3>
+                            <ul>
+                                <li class="phone"></li>
+                                <li>
+                                    <iframe :src="qrcode" scrolling="no" frameborder="0"></iframe>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <label>活动二维码</label>
+                                    <span class="qrcode">
+                                        <img src="../assets/img/code.png" alt="">
+                                    </span>
+                                    <span>该二维码及链接均可用于活动推广。</span>
+                                </li>
+                                <li>
+                                    <label>活动链接</label>
+                                    <span class="url">http://fanqie.smg.cn/html/news/201804/0318835.html</span>
+                                </li>
+                                <li>
+                                    <label>活动流程</label>
+                                    <span class="tp"></span>
+                                </li>
+                                <li>
+                                    <button class="exit">关闭</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dialog flow">
+                        <div class="content">
+                            <h3>
+                                <span>注册</span>
+                                <span class="exit"></span>
+                            </h3>
+                            <ul class="list-item">
+                                <li class="online">
+                                    <!-- 点赞项增加online类 -->
+                                    <label>注册模板名称</label>
+                                    <dl>
+                                        <li>某某某某某活动注册
+                                            <img src="/assets/img/img1.png" alt="">
+                                        </li>
+                                        <li>
+                                            <video class="video" controls src="/assets/mp4/bus.mp4"></video>
+                                        </li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>1.&nbsp;&nbsp;投票</label>
+                                    <dl>
+                                        <li>为社么要有投票？</li>
+                                    </dl>
+                                </li>
+                                <li class="stepList son">
+                                    <label>选项1</label>
+                                    <dl>
+                                        <li>为社么要有投票？</li>
+                                    </dl>
+                                </li>
+                                <li class="online stepList son">
+                                    <label>选项2</label>
+                                    <dl>
+                                        <li>为社么要有投票？</li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>注册项及模式</label>
+                                    <dl>
+                                        <li>必填：姓名 电话 邮箱 短信验证</li>
+                                        <li>选填：地址</li>
+                                    </dl>
+                                </li>
+                                <li class="stepList on">
+                                    <label><i>1</i>步骤</label>
+                                    <dl>
+                                        <li>注册</li>
+                                    </dl>
+                                </li>
+                                <li class="stepList son">
+                                    <label>活动模板</label>
+                                    <dl>
+                                        <li>某某活动投票模板</li>
+                                    </dl>
+                                </li>
+                                <li class="stepList">
+                                    <label><i>2</i>步骤</label>
+                                    <dl>
+                                        <li>模板</li>
+                                    </dl>
+                                </li>
+                                <li class="stepList son">
+                                    <label>活动模板</label>
+                                    <dl>
+                                        <li>某某活动投票模板</li>
+                                    </dl>
+                                </li>
+                                <li class="stepList">
+                                    <label><i>3</i>步骤</label>
+                                    <dl>
+                                        <li>模板</li>
+                                    </dl>
+                                </li>
+                                <li class="stepList son">
+                                    <label>活动模板</label>
+                                    <dl>
+                                        <li>某某活动投票模板</li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>自定义按钮</label>
+                                    <dl class="customBtn">
+                                        <!-- 按钮类增加customBtn类 -->
+                                        <li>文字：确认注册</li>
+                                        <li>文字颜色：#ffffff
+                                            <span class="color">
+                                                <i style="background: #0089fe"></i>
+                                            </span>
+                                        </li>
+                                        <li>按钮背景色：#0089fe
+                                            <span class="color">
+                                                <i style="background: green"></i>
+                                            </span>
+                                        </li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>注册成功提示</label>
+                                    <dl>
+                                        <li>恭喜您已完成注册！接下来可以愉快滴加入我们的活动中来啦！</li>
+                                        <li>
+                                            <textarea id="editor-1" style="width:100%;height: 170px;">恭喜您已完成注册！接下来可以愉快滴加入我们的活动中来啦！</textarea>
+                                        </li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>注册背景图</label>
+                                    <dl class="reBg">
+                                        <li>
+                                            <img src="/assets/img/bg.JPEG" alt="">
+                                        </li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <button class="exit">取消</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

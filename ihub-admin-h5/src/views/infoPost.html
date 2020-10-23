@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <div class="mbs">
+                        <h3>新建信息提交模板</h3>
+                        <ul>
+                            <li>
+                                <a href="">模板</a>
+                            </li>
+                            <span>></span>
+                            <li>
+                                <a href="">信息提交管理</a>
+                            </li>
+                            <span>></span>
+                            <li>新建信息提交模板</li>
+                        </ul>
+                    </div>
+                    <div class="content">
+                        <div class="items">
+                            <div class="page-header">
+                                <h3>基本信息设置
+                                    <small>背景图建议尺寸：960*1704像素，格式png、jpeg、jpg、gif，大小不超过1M。</small>
+                                </h3>
+                            </div>
+                            <div class="list-item">
+                                <label>模板名称</label>
+                                <li>
+                                    <textarea id="editor-0" style="width: 100%;height: 36px; overflow: hidden;"></textarea>
+                                    <i>0/35</i>
+                                </li>
+                                <p class="sign">请填写注册模板名称</p>
+                            </div>
+                            <div class="list-item">
+                                <label>互动文案</label>
+                                <li>
+                                    <textarea id="editor-1" style="width: 100%;height: 165px; overflow: hidden;"></textarea>
+                                    <i>0/35</i>
+                                </li>
+                                <p class="sign">请填写注册模板名称</p>
+                            </div>
+                            <div class="list-item regName">
+                                <label>用户提交内容</label>
+                                <li class="checkeds box">
+                                    <span class="opt">
+                                        <input type="checkbox" name="img">
+                                    </span>基本信息
+                                    <span class="opt">
+                                        <input type="checkbox" name="img">
+                                    </span>图片
+                                    <span class="opt">
+                                        <input type="checkbox" name="video">
+                                    </span>视频
+                                </li>
+                            </div>
+                            <div class="list-item regName">
+                                <label>用户信息设置</label>
+                                <li class="regMode">
+                                    <dl>
+                                        <li>
+                                            <label>必填</label>
+                                            <label>选填</label>
+                                        </li>
+                                        <li class="item" data-id="1">
+                                            <label>姓名</label>
+                                            <span class="checked on">
+                                                <input type="radio" name="vote">
+                                            </span>
+                                            <span class="checked">
+                                                <input type="radio" name="vote">
+                                            </span>
+                                            <span>
+                                                <i class="add"></i>
+                                                <i class="del"></i>
+                                                <i class="up"></i>
+                                                <i class="down"></i>
+                                            </span>
+                                        </li>
+                                        <li class="item" data-id="2">
+                                            <label>电话</label>
+                                            <span class="checked on">
+                                                <input type="radio" name="vote">
+                                            </span>
+                                            <span class="checked">
+                                                <input type="radio" name="vote">
+                                            </span>
+                                            <span>
+                                                <i class="add"></i>
+                                                <i class="del"></i>
+                                                <i class="up"></i>
+                                                <i class="down"></i>
+                                            </span>
+                                        </li>
+                                        <li class="item" data-id="3">
+                                            <label>邮箱</label>
+                                            <span class="checked on">
+                                                <input type="radio" name="vote">
+                                            </span>
+                                            <span class="checked">
+                                                <input type="radio" name="vote">
+                                            </span>
+                                            <span>
+                                                <i class="add"></i>
+                                                <i class="del"></i>
+                                                <i class="up"></i>
+                                                <i class="down"></i>
+                                            </span>
+                                        </li>
+                                        <li class="item" data-id="4">
+                                            <label>短信验证</label>
+                                            <span class="checked on">
+                                                <input type="radio" name="vote">
+                                            </span>
+                                            <span class="checked">
+                                                <input type="radio" name="vote">
+                                            </span>
+                                            <span>
+                                                <i class="add"></i>
+                                                <i class="del"></i>
+                                                <i class="up"></i>
+                                                <i class="down"></i>
+                                            </span>
+                                        </li>
+                                    </dl>
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>自定义按钮</label>
+                                <li class="setupButtn">
+                                    <span class="no">
+                                        <input type="text" placeholder="设置按钮文字">
+                                    </span>
+                                    <span class="setColor">
+                                        <input type="text" placeholder="按钮文字颜色">
+                                    </span>
+                                    <span class="setColor">
+                                        <input type="text" placeholder="按钮背景色">
+                                    </span>
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>爆料完成后提示</label>
+                                <li>
+                                    <input type="text" maxlength="35">
+                                    <i>0/35</i>
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>信息上传页背景</label>
+                                <li class="upBg">
+                                    <span>
+                                        <img src="/assets/img/bg.JPEG" alt="">
+                                    </span>
+                                    <input type="file">
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>用户信息页背景</label>
+                                <li class="upBg">
+                                    <span>
+                                        <img src="/assets/img/bg.JPEG" alt="">
+                                    </span>
+                                    <input type="file">
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content btn">
+                        <div class="submit">
+                            <input type="button" value="保存">
+                            <input type="button" value="预览">
+                        </div>
+                    </div>
+                    <!--dialog-->
+                    <%= require('html-loader!./addRegInfoDialog.html') %>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

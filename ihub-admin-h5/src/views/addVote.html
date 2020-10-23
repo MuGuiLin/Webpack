@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <div class="article">
+                        <div class="mbs">
+                            <h3>新建投票</h3>
+                            <ul>
+                                <li>
+                                    <a href="">模板</a>
+                                </li>
+                                <span>></span>
+                                <li>
+                                    <a href="">投票管理</a>
+                                </li>
+                                <span>></span>
+                                <li>新建投票</li>
+                            </ul>
+                        </div>
+                        <div class="content">
+                            <div class="items">
+                                <div class="page-header">
+                                    <h3>基础设置
+                                        <small>设置后，必须插入图文消息中才可生效。投票将统计该投票在各个渠道的综合结果总和。</small>
+                                    </h3>
+                                </div>
+                                <div class="list-item">
+                                    <label>投票模板名称</label>
+                                    <li>
+                                        <input type="text" maxlength="35" placeholder="必填项">
+                                        <i>0/35</i>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>投票模式</label>
+                                    <li class="checkeds">
+                                        <span class="checked on" @click="blendSwitch(false)">
+                                            <input type="radio" name="vote" checked>
+                                        </span>单选
+                                        <span class="checked" @click="blendSwitch(false)">
+                                            <input type="radio" name="vote">
+                                        </span>多选
+                                        <span class="checked" @click="blendSwitch(true)">
+                                            <input type="radio" name="vote">
+                                        </span>混合
+                                        <i>逐题设置</i>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content addList">
+                            <div class="items" v-if="voteData" v-for="(item,index) in voteData">
+                                <div class="page-header" v-if="index==0">
+                                    <h3>投票题
+                                        <small>题干图片最佳尺寸：672*300像素，选项图片最佳尺寸：284*284像素，格式png、jpeg、jpg、gif，大小不超过1M。</small>
+                                    </h3>
+                                </div>
+                                <div class="list-item">
+                                    <label>
+                                        <i>{{index+1}}.</i>标题</label>
+                                    <li>
+                                        <input type="text" :name="'title['+index+'][name]'" v-model="item.name" maxlength="35">
+                                        <i>0/35</i>
+                                    </li>
+                                    <p class="handled">
+                                        <span class="file"></span>
+                                        <input type="file" class="imgFile">
+                                        <input type="hidden" :name="'title['+index+'][name_img]'" v-model="item.name_img">
+                                        <span class="color setColor">
+                                            <input type="text" :name="'title['+index+'][name_color]'" v-model="item.name_color"><i></i>
+                                        </span>
+                                    </p>
+                                    <p class="showDel">
+                                        <span class="up">收起</span>
+                                        <span class="del" v-on:click="optionDel(index)" v-if="index>0">删除</span>
+                                    </p>
+                                </div>
+                                <div class="list-content">
+                                    <div class="list-item" v-if="blend">
+                                        <label><i></i>投票模式</label>
+                                        <li class="checkeds">
+                                            <span class="checked on">
+                                                <input type="radio" name="vote" checked>
+                                            </span>单选
+                                            <span class="checked">
+                                                <input type="radio" name="vote">
+                                            </span>多选
+                                        </li>
+                                    </div>
+                                    <div class="list-item" v-for="(item,n) in item.option">
+                                        <label>
+                                            <i></i>选项{{n+1}}</label>
+                                        <li>
+                                            <input type="text" v-model="item.name" :name="'title['+index+'][option]['+n+'][name]'" maxlength="35">
+                                            <i>0/35</i>
+                                            <span></span>
+                                        </li>
+                                        <p class="handled">
+                                            <span class="file"></span>
+                                            <input type="file" class="imgFile">
+                                            <input type="hidden" :name="'title['+index+'][option]['+n+'][image]'" v-model="item.image">
+                                            <span class="color setColor">
+                                                <input type="text" v-model="item.name_color" :name="'title['+index+'][option]['+n+'][name_color]'">
+                                                <i></i>
+                                            </span>
+                                            <span class="add" v-on:click="addSelect(index,n)"></span>
+                                            <span class="del" v-on:click="selectDel(index,n)"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="items">
+                                <p class="addVote" v-on:click="addVote">
+                                    <span>添加投票</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="items">
+                                <div class="page-header">
+                                    <h3>相关信息设置
+                                        <small>背景图建议尺寸：960*1704像素，格式png、jpeg、jpg、gif，大小不超过1M。</small>
+                                    </h3>
+                                </div>
+                                <div class="list-item">
+                                    <label>投票完成提示</label>
+                                    <li>
+                                        <input type="text" maxlength="35">
+                                        <i>0/35</i>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>数据显示方式</label>
+                                    <li class="checkeds">
+                                        <span class="checked on">
+                                            <input type="radio" name="vote" checked>
+                                        </span>饼图
+                                        <span class="checked">
+                                            <input type="radio" name="vote">
+                                        </span>柱状图
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>显示投票结果</label>
+                                    <li class="showBtn">
+                                        <span class="on"></span>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>自定义按钮</label>
+                                    <li class="setupButtn">
+                                        <span class="no">
+                                            <input type="text" placeholder="设置按钮文字">
+                                        </span>
+                                        <span class="setColor">
+                                            <input type="text" placeholder="按钮文字颜色">
+                                            <i></i>
+                                        </span>
+                                        <span class="setColor">
+                                            <input type="text" placeholder="按钮背景色">
+                                            <i></i>
+                                        </span>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>投票页背景图</label>
+                                    <li class="upBg">
+                                        <span></span>
+                                        <input type="file">
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content btn">
+                            <div class="submit">
+                                <input type="button" value="保存">
+                                <input type="button" value="预览">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

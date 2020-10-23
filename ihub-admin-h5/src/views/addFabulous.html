@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <div class="mbs">
+                        <h3>新建点赞活动</h3>
+                        <ul>
+                            <li>
+                                <a href="">模板</a>
+                            </li>
+                            <span>></span>
+                            <li>
+                                <a href="">点赞活动管理</a>
+                            </li>
+                            <span>></span>
+                            <li>新建点赞活动</li>
+                        </ul>
+                    </div>
+                    <div class="content">
+                        <div class="items">
+                            <div class="page-header">
+                                <h3>基础设置
+                                    <small>点赞次数限制活动可以点赞多少次，点赞对象限制活动可以给多少对象点赞。</small>
+                                </h3>
+                            </div>
+                            <div class="list-item">
+                                <label>点赞模板名称</label>
+                                <li>
+                                    <input type="text" maxlength="35" placeholder="必填项">
+                                    <i>0/35</i>
+                                </li>
+                                <p class="sign">请填写点赞模板名称</p>
+                            </div>
+                            <div class="list-item">
+                                <label>点赞次数限制</label>
+                                <li class="checkeds">
+                                    <span class="checked on">
+                                        <input type="radio" name="vote" checked>
+                                    </span>
+                                    <b>一次</b>
+                                    <span class="checked">
+                                        <input type="radio" name="vote">
+                                    </span>
+                                    <input type="text" placeholder="天数" disabled>天一次
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>点赞对象限制</label>
+                                <li class="checkeds">
+                                    <span class="checked on">
+                                        <input type="radio" name="vote" checked>
+                                    </span>
+                                    <b>无限制</b>
+                                    <span class="checked">
+                                        <input type="radio" name="vote">
+                                    </span>最多&nbsp;&nbsp;
+                                    <input type="text" placeholder="个数" disabled>个
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>排序规则</label>
+                                <li class="checkeds">
+                                    <span class="checked on">
+                                        <input type="radio" name="vote" checked>
+                                    </span>
+                                    <b>按序号从小到大</b>
+                                    <span class="checked">
+                                        <input type="radio" name="vote">
+                                    </span>按点赞数从多到少
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>爱心按钮颜色</label>
+                                <li class="setupButtn">
+                                    <span class="setColor">
+                                        <input type="text" placeholder="可输入色值">
+                                    </span>
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>显示规则按钮</label>
+                                <li class="showBtn">
+                                    <span class="on rule"></span>
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>活动规则文案</label>
+                                <li>
+                                    <textarea class="editor" id="editor-0" name="content" style="width: 100%;height: 230px;"></textarea>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content fabulous" id="fabulous">
+                        <div class="items" v-cloak v-if="fabulousData" v-for="(item,index) in fabulousData" :data-index="index">
+                            <div class="page-header" v-if="index==0">
+                                <h3>点赞项
+                                    <small>上传图片最佳尺寸：680*382像素，大小10M以内；视频格式MP4，大小100M以内。 </small>
+                                </h3>
+                            </div>
+                            <div class="list-item">
+                                <label>{{index+1}}. 标题</label>
+                                <!-- 上传图片后增加img类 -->
+                                <li :class="{img:item.title_img}">
+                                    <textarea maxlength="35" class="title" :name="'title['+index+'][title_name]'" v-model="item.title_name"></textarea>
+                                    <i>0/35</i>
+                                    <img :src="host+item.title_img">
+                                </li>
+                                <div :class="{'handled':fabulousData,'onVideo':item.title_video}">
+                                    <!--上传视频后增加onVideo类-->
+                                    <span class="file"></span>
+                                    <input type="file" class="imgFile">
+                                    <input type="hidden" v-model="item.title_img" :name="'title['+index+'][title_img]'">
+                                    <span class="video"></span>
+                                    <input type="file" class="videoFile">
+                                    <input type="hidden" v-model="item.title_video" :name="'title['+index+'][title_video]'">
+                                    <span class="video-start" :video-src="host+item.title_video"></span>
+                                    <span class="color setColor">
+                                        <input type="text" class="color" v-model="item.title_color" :name="'title['+index+'][title_color]'">
+                                    </span>
+                                </div>
+                                <div class="showDel">
+                                    <span class="upDown">收起</span>
+                                    <span class="del">删除</span>
+                                </div>
+                            </div>
+                            <div class="list-item  bt">
+                                <label>详情文案</label>
+                                <li>
+                                    <textarea class="editor" v-model="item.introduce_details" :id="'editor-'+(index+1)" :name="'title['+index+'][introduce_details]'"
+                                        style="width: 100%;height: 170px;"></textarea>
+                                </li>
+                            </div>
+                        </div>
+                        <p class="addFabulous">
+                            <span>添加点赞项</span>
+                        </p>
+                    </div>
+                    <div class="content">
+                        <div class="items">
+                            <div class="page-header">
+                                <h3>相关信息设置
+                                    <small>背景图建议尺寸：960*1704像素，格式png、jpeg、jpg、gif，大小不超过1M。</small>
+                                </h3>
+                            </div>
+                            <div class="list-item">
+                                <label>自定义按钮</label>
+                                <li class="setupButtn">
+                                    <span class="no">
+                                        <input type="text" placeholder="设置按钮文字">
+                                    </span>
+                                    <span class="setColor">
+                                        <input type="text" value="按钮文字颜色">
+                                    </span>
+                                    <span class="setColor">
+                                        <input type="text" value="按钮背景色">
+                                    </span>
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>投票页背景图</label>
+                                <li class="upBg">
+                                    <span></span>
+                                    <input type="file">
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content btn">
+                        <div class="submit">
+                            <input type="button" value="保存">
+                            <input type="button" value="预览">
+                        </div>
+                    </div>
+                    <!--视频预览-->
+                    <div class="dialog">
+                        <div class="content">
+                            <h4>视频预览
+                                <span class="close">&times</span>
+                            </h4>
+                            <div class="video-content">
+                                <video id="video" src="" controls></video>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

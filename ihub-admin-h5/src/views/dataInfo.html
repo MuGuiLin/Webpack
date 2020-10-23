@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+    <!-- 主体 -->
+    <main>
+        <!-- 左侧菜单-->
+        <%= require('html-loader!./aside.html') %>
+        <!-- 右侧主体 -->
+        <article class="pjax">
+            <div class="content">
+                <iframe id="iframe" name="iframe" onload="javascript:iframeAutoHeight(this)" scrolling="no" frameborder="0" src="#"></iframe>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

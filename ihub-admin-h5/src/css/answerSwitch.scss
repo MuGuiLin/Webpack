@@ -1,0 +1,100 @@
+/*
+ * @Author: LiuGuangMing 
+ * @Date: 2018-09-30 15:00:44 
+ * @Last Modified by: LiuGuangMing
+ * @Last Modified time: 2018-10-15 15:33:08
+ */
+.content {
+    .items {
+        overflow: initial;
+
+        .list-item {
+            padding: 20px;
+            margin: 30px -20px;
+
+            &.inset {
+                border: 1px solid #0089fe;
+                position: relative;
+
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    left: -12px;
+                    top: 23px;
+                    width: 24px;
+                    height: 24px;
+                    border: 1px solid #0089fe;
+                    background: #fff;
+                    transform: rotate(-45deg);
+                    border-top: none;
+                    border-left: none;
+                }
+            }
+
+            ul {
+                padding: 0px 24px;
+                margin-top: 20px;
+
+                li {
+                    padding-left: 10px;
+                    margin-bottom: 10px;
+
+                    &.on {
+                        position: relative;
+
+                        &::before {
+                            content: "";
+                            display: inline-block;
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 50%;
+                            background: #0089fe url("../img/checked.svg") no-repeat;
+                            background-position: center;
+                            position: absolute;
+                            top: 6px;
+                            left: -24px;
+                            margin: auto;
+                        }
+                    }
+
+                    img {
+                        display: block;
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            dl {
+                position: relative;
+                h3 {
+                    font-size: 20px;
+                    color: #222222;
+                    padding-right: 220px;
+                }
+                span{
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    button {
+                        min-width: 72px;
+                        height: 28px;
+                        border-radius: 2px;
+                        border: none;
+                        font-size: 14px;
+                        color: #fff;
+                        background: #0089fe;
+                        outline: none;
+
+                        &.close{
+                            background: #fff;
+                            border: 1px solid #0089fe;
+                            color: #0089fe;
+                            margin-right: 4px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

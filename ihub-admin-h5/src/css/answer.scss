@@ -1,0 +1,42 @@
+/*
+ * @Author: LiuGuangMing 
+ * @Date: 2018-09-20 17:09:20 
+ * @Last Modified by: LiuGuangMing
+ * @Last Modified time: 2018-10-16 15:14:39
+ */
+ .content{
+
+    .items{
+
+        .list-item {
+
+            label{
+
+                &.checkeds{
+                    position: relative;
+                    text-indent: 22px;
+            
+                    span{
+                        position: absolute;
+                        right: 10px;
+                        bottom: 0px;
+                        top: 0px;
+                        margin: auto;
+                    }
+                }
+             }
+             li{
+                 textarea{
+                    line-height: 34px;
+                    overflow: hidden;
+                 }
+             }
+        } 
+    } 
+ }
+ .items .list-content .list-item .add{
+    display: none !important;
+ }
+.items .list-content .list-item:last-child .add{
+display: inline-block !important;
+}

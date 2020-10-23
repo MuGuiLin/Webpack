@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <div class="mbs">
+                        <h3>新建图文模板</h3>
+                        <ul>
+                            <li>
+                                <a href="">模板</a>
+                            </li>
+                            <span>></span>
+                            <li>
+                                <a href="">信息提交管理</a>
+                            </li>
+                            <span>></span>
+                            <li>新建信息提交模板</li>
+                        </ul>
+                    </div>
+                    <div class="content">
+                        <div class="items">
+                            <div class="page-header">
+                                <h3>基础设置</h3>
+                            </div>
+                            <div class="list-item">
+                                <label>图文模板名称</label>
+                                <li>
+                                    <input type="text" maxlength="35">
+                                    <i>0/35</i>
+                                </li>
+                            </div>
+                            <div class="list-item">
+                                <label>自定义按钮</label>
+                                <li class="setupButtn">
+                                    <span class="no">
+                                        <input type="text" placeholder="设置按钮文字">
+                                    </span>
+                                    <span class="setColor">
+                                        <input type="text" placeholder="按钮文字颜色">
+                                    </span>
+                                    <span class="setColor">
+                                        <input type="text" placeholder="按钮背景色">
+                                    </span>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="items">
+                            <div class="page-header">
+                                <h3>图文模板内容</h3>
+                            </div>
+                            <div class="list-item">
+                                <textarea name="" id="editor-0" style="width:100%; height:530px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content btn">
+                        <div class="submit">
+                            <input type="button" value="保存">
+                            <input type="button" value="预览">
+                        </div>
+                    </div>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

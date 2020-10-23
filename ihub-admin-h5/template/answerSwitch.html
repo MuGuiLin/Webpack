@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        答题管理
+    </title>
+<link href="../static/css/answerSwitch.css" rel="stylesheet"></head>
+
+<body>
+    <!-- 头部 -->
+    <header>
+    <div class="menu"></div>
+    <div class="logo"></div>
+    <div class="userNav">
+        <ul>
+            <li class="portrait">
+                <img src="/assets/img/user.svg">
+            </li>
+            <li class="userName">
+                <p>酷土豆</p>
+                <p>SMT研发部</p>
+                <i></i>
+            </li>
+            <li class="help"></li>
+        </ul>
+        <div class="organi">
+            <div class="content">
+                <dl>
+                    <li class="pro">iHub·运营</li>
+                    <li class="dep">
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="wechat"></i>
+                            </span>
+                            <span class="tname">SMT研发部</span>
+                        </div>
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="sina"></i>
+                            </span>
+                            <span class="tname">SMT研发部SMT研发部</span>
+                        </div>
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="wechat"></i>
+                            </span>
+                            <span class="tname">SMT研发部</span>
+                        </div>
+                    </li>
+                </dl>
+                <dl>
+                    <li class="pro">iHub·运营</li>
+                    <li class="dep">
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="sina"></i>
+                            </span>
+                            <span class="tname">SMT研发部</span>
+                        </div>
+                    </li>
+                </dl>
+                <dl>
+                    <li class="pro">iDitor·二审</li>
+                    <li class="dep">
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="wechat"></i>
+                            </span>
+                            <span class="tname">SMT研发部SMT研发部</span>
+                        </div>
+                    </li>
+                </dl>
+                <dl>
+                    <li class="pro">iDitor·二审</li>
+                    <li class="dep">
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="sina"></i>
+                            </span>
+                            <span class="tname">SMT研发部</span>
+                        </div>
+                    </li>
+                </dl>
+                <dl>
+                    <li class="pro">iDitor·撰稿</li>
+                    <li class="dep">
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="sina"></i>
+                            </span>
+                            <span class="tname">SMT研发部</span>
+                        </div>
+                    </li>
+                </dl>
+                <dl>
+                    <li class="pro">iDitor·撰稿</li>
+                    <li class="dep">
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="wechat"></i>
+                            </span>
+                            <span class="tname">SMT研发部</span>
+                        </div>
+                    </li>
+                </dl>
+                <dl>
+                    <li class="pro">iDitor·撰稿</li>
+                    <li class="dep">
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="wechat"></i>
+                            </span>
+                            <span class="tname">SMT研发部SMT研发部</span>
+                        </div>
+                    </li>
+                </dl>
+                <dl>
+                    <li class="pro">iDitor·撰稿</li>
+                    <li class="dep">
+                        <div>
+                            <span class="timg">
+                                <img src="/assets/img/user-img.png" alt="">
+                                <i class="sina"></i>
+                            </span>
+                            <span class="tname">SMT研发部</span>
+                        </div>
+                    </li>
+                </dl>
+            </div>
+            <div class="setting">
+                <li class="set">
+                    <input type="button" value="个人设置">
+                </li>
+                <li class="out">
+                    <input type="button" value="退出登陆">
+                </li>
+            </div>
+        </div>
+    </div>
+</header>
+    <!-- 主体 -->
+    <main>
+        <!-- 左侧菜单-->
+        <aside>
+    <ul class="menus">
+        <li class="on">
+            <a href="/template/operate_index.html">
+                <span>首页</span>
+            </a>
+        </li>
+        <li data-type="yunying">
+            <a href="/template/operate.html">
+                <span>运营</span>
+            </a>
+        </li>
+        <li data-type="moban">
+            <span>模板</span>
+            <dl>
+        <li>
+            <a href="/template/templateReg.html">
+                <span>注册</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/addVote.html">
+                <span>投票</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/list.html">
+                <span>点赞</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/chatRoom.html">
+                <span>聊天室</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/burst.html">
+                <span>爆料</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/infoPost.html">
+                <span>信息提交</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/graphicTemplate.html">
+                <span>新建图文模板</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/signUp.html">
+                <span>报名</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/addLive.html">
+                <span>直播</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/answer.html">
+                <span>答题</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/answerSwitch.html">
+                <span>答题管理</span>
+            </a>
+        </li>
+        </dl>
+        </li>
+        <li data-type="huodong">
+            <a href="/template/activityList.html">
+                <span>活动</span>
+            </a>
+        </li>
+        <li data-type="shuju">
+            <a href="/template/dataInfo.html?url=https://ihubwg.smgtech.net/index.php/users/index">
+                <span>数据</span>
+            </a>
+        </li>
+        <li data-type="wechat">
+            <span>微信号</span>
+            <dl>
+        <li>
+            <a href="/template/dataInfo.html?url=https://ihubwg.smgtech.net/index.php/users/index">
+                <span>设置关注时回复</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/dataInfo.html?url=https://ihubwg.smgtech.net/index.php/users/index">
+                <span>设置关键词回复</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/dataInfo.html?url=https://ihubwg.smgtech.net/index.php/users/index">
+                <span>媒体素材库管理</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/dataInfo.html?url=https://ihubwg.smgtech.net/index.php/users/index">
+                <span>消息管理</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/dataInfo.html?url=https://ihubwg.smgtech.net/index.php/users/index">
+                <span>自定义菜单管理</span>
+            </a>
+        </li>
+        <li>
+            <a href="/template/dataInfo.html?url=https://ihubwg.smgtech.net/index.php/users/index">
+                <span>评论采集功能</span>
+            </a>
+        </li>
+        </dl>
+        </li>
+        <li data-type="shenhe">
+            <a href="/template/checked.html">
+                <span>待审核
+                    <i>12</i>
+                </span>
+            </a>
+        </li>
+        <li data-type="tongguo">
+            <a href="/template/checked.html?type=adopt">
+                <span>已通过</span>
+            </a>
+        </li>
+        <li data-type="weitongguo">
+            <a href="/template/checked.html?type=notadopt">
+                <span>未通过</span>
+            </a>
+        </li>
+    </ul>
+</aside>
+        <!-- 右侧主体 -->
+        <article class="pjax">
+            <div class="article">
+                <div class="mbs">
+                    <h3>某活动开关答题管理</h3>
+                    <ul>
+                        <li>
+                            <a href="">模板</a>
+                        </li>
+                        <span>></span>
+                        <li>
+                            <a href="">答题管理</a>
+                        </li>
+                        <span>></span>
+                        <li>开关答题管理</li>
+                    </ul>
+                </div>
+                <div class="content">
+                    <div class="items">
+                        <div class="page-header">
+                            <h3>答题管理
+                                <small>每题答案显示在选项前。</small>
+                            </h3>
+                        </div>
+                        <div class="list-item inset">
+                            <dl>
+                                <h3>1. 德国著名经济学家霍夫曼专门对工业结构规律进行研究得出的霍夫曼比率是：</h3>
+                                <span>
+                                    <button class="close">关闭</button>
+                                    <button>关闭并开启下一题</button>
+                                </span>
+                            </dl>
+                            <ul class="clear">
+                                <li>A. 霍夫曼比例=消费品产值/资本品产值</li>
+                                <li class="on">B. 霍夫曼比例=资本资料工业产值/消费资料工业产值</li>
+                                <li>C. 霍夫曼比例=消费资料工业产值/资本资料工业产值</li>
+                                <li>D. 霍夫曼比例=资本品产值/消费品产值</li>
+                            </ul>
+                        </div>
+                        <div class="list-item">
+                            <dl>
+                                <h3>2. 德国著名经济学家霍夫曼专门对工业结构规律进行研究得出的霍夫曼比率是：</h3>
+                                <span>
+                                    <button>开启</button>
+                                </span>
+                            </dl>
+                            <ul class="clear">
+                                <li>A. 霍夫曼比例=消费品产值/资本品产值<img src="/assets/img/img5.png" alt=""></li>
+                                <li class="on">B. 霍夫曼比例=资本资料工业产值/消费资料工业产值<img src="/assets/img/img5.png" alt=""></li>
+                                <li class="on">C. 霍夫曼比例=消费资料工业产值/资本资料工业产值</li>
+                                <li class="on">D. 霍夫曼比例=资本品产值/消费品产值</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+    <!-- 底部版权 -->
+    <footer>
+    SMG技术运营中心-研发中心  提供技术支持
+</footer>
+<script type="text/javascript" src="../static/js/answerSwitch.js"></script></body>
+
+</html>

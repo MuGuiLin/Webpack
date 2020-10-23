@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <div class="checked">
+                        <!-- 通知 -->
+                        <div class="notice">
+                            <li>iHub 2.0 全新登场！</li>
+                            <ul>
+                                <li>2018-06-08</li>
+                                <li>
+                                    <a href="./notice.html">更多</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 账号情况 -->
+                        <div class="sketch">
+                            <h3>账号整体情况</h3>
+                            <div class="title operate">
+                                <li></li>
+                                <li>
+                                    <i></i>
+                                    <div>
+                                        <span>新消息</span>
+                                        <span>50</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i></i>
+                                    <div>
+                                        <span>新消息</span>
+                                        <span>500</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i></i>
+                                    <div>
+                                        <span>新消息</span>
+                                        <span>5000</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i></i>
+                                    <div>
+                                        <span>新消息</span>
+                                        <span>50000</span>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="list-item">
+                                <h4 class="operate">在线活动</h4>
+                                <dl data-id="2">
+                                    <ul>
+                                        <li>
+                                            <div>
+                                                始终开启
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <img src="../assets/img/list-icon.png">
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <span>SMG RADIO 创新学院“奔跑吧5G”分享会</span>
+                                            <span>
+                                                <button class="on">下线</button>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="operate">
+                                                <i>访问量</i>56,268
+                                            </span>
+                                            <span class="operate">
+                                                <i>参与次数</i>56,268
+                                            </span>
+                                            <span class="operate">
+                                                <i>参与人数</i>56,268
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="btnFlow">
+                                                <button class="f">注册</button>
+                                                <button class="f">报名</button>
+                                                <button class="f">答题</button>
+                                                <button class="f">抽奖</button>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </dl>
+                            </div>
+                        </div>
+                        <!-- 排行榜 -->
+                        <div class="rankings">
+                            <h3>排行榜</h3>
+                            <div class="list-item">
+                                <ul>
+                                    <h4>本周最热活动</h4>
+                                    <li>转发有礼--大搜帮</li>
+                                    <li>疯狂双12--大搜帮</li>
+                                    <li>为你免单--大搜帮</li>
+                                    <li>五星体育互动留言--五星体育互动</li>
+                                    <li>赛事直播互动--五星体育互动</li>
+                                </ul>
+                                <ul>
+                                    <h4>用户关注数</h4>
+                                    <li>上海交通广播</li>
+                                    <li>私家车999</li>
+                                    <li>汽车912</li>
+                                    <li>918云南交通广播</li>
+                                    <li>郑州新闻广播</li>
+                                </ul>
+                                <ul>
+                                    <h4>注册用户数</h4>
+                                    <li>汽车912</li>
+                                    <li>上海交通广播</li>
+                                    <li>918云南交通广播</li>
+                                    <li>私家车999</li>
+                                    <li>郑州新闻广播</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dialog flow">
+                        <div class="content">
+                            <h3>
+                                <span>注册</span>
+                                <span class="exit"></span>
+                            </h3>
+                            <ul class="list-item">
+                                <li class="online">
+                                    <!-- 点赞项增加online类 -->
+                                    <label>注册模板名称</label>
+                                    <dl>
+                                        <li>某某某某某活动注册
+                                            <img src="/assets/img/img1.png" alt="">
+                                        </li>
+                                        <li>
+                                            <video controls src="/assets/mp4/bus.mp4"></video>
+                                        </li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>注册项及模式</label>
+                                    <dl>
+                                        <li>必填：姓名 电话 邮箱 短信验证</li>
+                                        <li>选填：地址</li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>自定义按钮</label>
+                                    <dl class="customBtn">
+                                        <!-- 按钮类增加customBtn类 -->
+                                        <li>文字：确认注册</li>
+                                        <li>文字颜色：#ffffff
+                                            <span class="color">
+                                                <i style="background: #0089fe"></i>
+                                            </span>
+                                        </li>
+                                        <li>按钮背景色：#0089fe
+                                            <span class="color">
+                                                <i style="background: green"></i>
+                                            </span>
+                                        </li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>注册成功提示</label>
+                                    <dl>
+                                        <li>恭喜您已完成注册！接下来可以愉快滴加入我们的活动中来啦！</li>
+                                        <li>
+                                            <textarea id="editor-1" style="width:100%;height: 170px;">恭喜您已完成注册！接下来可以愉快滴加入我们的活动中来啦！</textarea>
+                                        </li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <label>注册背景图</label>
+                                    <dl class="reBg">
+                                        <li>
+                                            <img src="/assets/img/bg.JPEG" alt="">
+                                        </li>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <button class="exit">取消</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

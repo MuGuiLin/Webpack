@@ -1,0 +1,109 @@
+/*
+ * @Author: LiuGuangMing 
+ * @Date: 2018-07-12 15:55:12 
+ * @Last Modified by: LiuGuangMing
+ * @Last Modified time: 2018-08-30 17:57:46
+ */
+.content{
+
+    h4{
+        font-size: 18px;
+        color: #999999;
+
+        span{
+            float: right;
+            font-size: 14px;
+            color: #222222;
+            cursor: pointer;
+
+            a{
+                color: #222222;
+            }
+
+            &::before{
+                content: "";
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                background-image: url("../img/add.svg");
+                background-size: 100%;
+                vertical-align: middle;
+                margin-right: 8px;
+            }
+        }
+    }
+    .list-item{
+        margin-top: 30px;
+        margin-bottom: 80px;
+        border: 1px solid #f5f5f5;
+
+        dl{
+            background: #f7f8f8;
+
+            li{
+                font-size: 16px;
+
+                span{
+                    &:first-of-type{
+                        i{
+                            content: "";
+                            display: inline-block;
+                            width: 14px;
+                            height: 8px;
+                            vertical-align: middle;
+                            background-image: url("../img/id.svg");
+                            background-size: 100%;
+                            margin-left: 5px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                        }
+                    }
+                }
+            }
+        }
+
+        li{
+            line-height: 59px;
+            font-size: 14px;
+            color: #222222;
+            border-bottom: 1px solid #f5f5f5;
+            position: relative;
+
+            &:last-of-type{
+                border: none;
+            }
+            span{
+                line-height: 20px;
+                display: inline-block;
+                margin-top: 20px;
+
+                &:nth-of-type(1){
+                    width: 100px;
+                    text-indent: 20px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                &:nth-of-type(2){
+                    padding: 0 180px 0 100px;
+                }
+                &:nth-of-type(3){
+                    padding-right: 20px;
+                    text-align: right;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                }
+
+                button{
+                    border: none;
+                    background: none;
+                    color: #0089fe;
+                    outline: none;
+                    padding: 0;
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}

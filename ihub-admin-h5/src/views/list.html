@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <div class="article">
+                        <div class="mbs">
+                            <h3>点赞模板管理
+                                <li class="search">
+                                    <input type="text" placeholder="模板名称">
+                                    <i></i>
+                                    <label></label>
+                                </li>
+                            </h3>
+                            <ul>
+                                <li>
+                                    <a href="">模板</a>
+                                </li>
+                                <span>></span>
+                                <li>点赞模板管理</li>
+                            </ul>
+                        </div>
+                        <div class="content">
+                            <h4>模板列表
+                                <span>
+                                    <a href="./addFabulous.html">新建模板</a>
+                                </span>
+                            </h4>
+                            <div class="list-item">
+                                <dl>
+                                    <li>
+                                        <span>ID
+                                            <i class="sort"></i>
+                                        </span>
+                                        <span>模板名称</span>
+                                        <span>操作</span>
+                                    </li>
+                                </dl>
+                                <ul>
+                                    <li>
+                                        <span>1</span>
+                                        <span>国际领先！SMG全IP 4K超高清转播集群平台亮相2018NAB</span>
+                                        <span>
+                                            <button>查看</button>
+                                            <button>编辑</button>
+                                            <button>删除</button>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>2</span>
+                                        <span>湖南广电组团考察SMG台集团一体化运行机制</span>
+                                        <span>
+                                            <button>查看</button>
+                                            <button>编辑</button>
+                                            <button>删除</button>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>3</span>
+                                        <span>证明实力的机会来了！电视三审人员速来刷题</span>
+                                        <span>
+                                            <button>查看</button>
+                                            <button>编辑</button>
+                                            <button>删除</button>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>4</span>
+                                        <span>上海电影节开闭幕式的酷炫灯光效果竟然出自他手！</span>
+                                        <span>
+                                            <button>查看</button>
+                                            <button>编辑</button>
+                                            <button>删除</button>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>5</span>
+                                        <span>ICS开播十周年，中外友人相聚一堂观摩《朱鹮》</span>
+                                        <span>
+                                            <button>查看</button>
+                                            <button>编辑</button>
+                                            <button>删除</button>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 分页 -->
+                            <div class="page">
+                                <li class="next">
+                                    <button></button>
+                                    <span>2
+                                        <i>/</i>6</span>
+                                    <button></button>
+                                </li>
+                                <li class="inset">
+                                    <input type="text">
+                                    <button>跳转</button>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

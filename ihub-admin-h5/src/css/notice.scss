@@ -1,0 +1,84 @@
+/*
+ * @Author: LiuGuangMing 
+ * @Date: 2018-07-12 13:56:16 
+ * @Last Modified by: LiuGuangMing
+ * @Last Modified time: 2018-09-06 16:48:29
+ */
+.content{
+    ul{
+        li{
+            line-height: 55px;
+            border-top: 1px dashed #c4c4c4;
+            font-size: 14px;
+            color: #888888;
+
+            &:last-of-type{
+                border-bottom: 1px dashed #c4c4c4;
+            }
+
+            h4{
+                cursor: pointer;
+                &::before{
+                    content: "";
+                    display: inline-block;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background: #dddddd;
+                    margin-right: 10px;
+                    vertical-align: middle;
+                }
+
+                span{
+                    float: right;
+                    font-size: 12px;
+                    color: #999999;
+
+                    i{
+                        display: inline-block;
+                        width: 20px;
+                        height: 20px;
+                        background-image: url("../img/pointed.svg");
+                        background-repeat: no-repeat;
+                        background-size: 10px;
+                        background-position: center;
+                        margin-left: 30px;
+                        margin-right: -5px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            &.on{
+                color: #222222;
+                h4{
+                    &::before{
+                        background: #0089fe;
+                    }
+                }
+            }
+
+            div{
+                font-size: 12px;
+                color: #222222;
+                margin-bottom: 20px;
+                display: none;
+                
+                p{
+                    line-height: 24px;
+                    padding-right: 45px;
+                    padding-left: 12px;
+
+                    span{
+                        color: #0089fe;
+
+                        a{
+                            color: #0089fe;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

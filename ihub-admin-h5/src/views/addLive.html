@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+    <!-- 主体 -->
+    <main>
+        <!-- 左侧菜单-->
+        <%= require('html-loader!./aside.html') %>
+        <!-- 右侧主体 -->
+        <article class="pjax">
+            <div class="mbs">
+                <h3>新建直播模板</h3>
+                <ul>
+                    <li>
+                        <a href="">模板</a>
+                    </li>
+                    <span>></span>
+                    <li>
+                        <a href="">直播模板管理</a>
+                    </li>
+                    <span>></span>
+                    <li>新建直播模板</li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="items">
+                    <div class="page-header">
+                        <h3>基础设置</h3>
+                    </div>
+                    <div class="list-item">
+                        <label>直播模板名称</label>
+                        <li>
+                            <input type="text" maxlength="35" placeholder="必填项">
+                            <i>0/35</i>
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>直播类型</label>
+                        <li>
+                            <div class="timeChecked type">
+                                <button type="button" class="on">火炉直播</button>
+                                <button type="button">视频流</button>
+                            </div>
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>视频流直播地址</label>
+                        <li class="android">
+                            <input type="text" maxlength="35" placeholder="例如：rtmp://live.kksmg.com/live/live24h">
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label></label>
+                        <li class="iphone">
+                            <input type="text" maxlength="35" placeholder="例如：http://ivi.bupt.edu.cn/hls/dfhd.m3u8">
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>直播界面形式</label>
+                        <li class="checkeds">
+                            <span class="checked on">
+                                <input type="radio" name="vote" checked="checked">
+                            </span>
+                            <b>横屏</b>
+                            <span class="checked">
+                                <input type="radio" name="vote">
+                            </span>
+                            <b>竖屏</b>
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>直播时段</label>
+                        <li>
+                            <div class="timeList">
+                                <div class="timePicker">
+                                    <input type="text" name="activity_time[0][begin_time]" readonly="readonly"
+                                        class="WdatePickerYY" placeholder="开始日期    时间">
+                                    <i>~</i>
+                                    <input type="text" name="activity_time[0][end_time]" readonly="readonly" class="WdatePickerYY"
+                                        placeholder="结束日期    时间">
+                                    <span class="addTime"></span>
+                                    <span class="delTime"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>在线人数倍数</label>
+                        <li class="checkeds">
+                            <span class="checked on">
+                                <input type="radio" name="vote" checked>
+                            </span>
+                            <b>关</b>
+                            <span class="checked">
+                                <input type="radio" name="vote">
+                            </span>
+                            <b>1倍</b>
+                            <span class="checked">
+                                <input type="radio" name="vote">
+                            </span>
+                            <input type="text" placeholder="整数" class="" disabled="disabled">倍
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>直播进入审核</label>
+                        <li class="showBtn">
+                            <span class="on rule"></span>
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>等待审核提示</label>
+                        <li>
+                            <textarea class="editor" id="editor-0" name="content" style="width: 100%;height: 200px;"></textarea>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <div class="content"  id="addLive">
+                <div class="items">
+                    <div class="page-header">
+                        <h3>相关信息设置
+                            <small>竖屏视频等待背景图建议尺寸：750*1077像素。</small>
+                        </h3>
+                    </div>
+                    <div class="list-item">
+                        <label>主持人文字颜色</label>
+                        <li class="setupButtn">
+                            <span class="setColor">
+                                <input type="text" placeholder="可输入色值">
+                            </span>
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>主持人微信昵称</label>
+                        <li>
+                            <input type="text" id="searchName" maxlength="35" placeholder="">
+                            <i>0/35</i>
+                            <input type="hidden" id="manager_id">
+                            <dl class="dataList" v-cloak v-if="nameData" v-cloak>
+                                <li v-for="item in nameData" v-on:click="manager(item.manager_id,item.nickname)">
+                                    <img :src="item.headimgurl">
+                                    <span>{{item.nickname}}</span>
+                                </li>
+                            </dl>
+                        </li>
+                    </div>
+                    <div class="list-item">
+                        <label>竖屏视频等待图</label>
+                        <li class="upBg">
+                            <span></span>
+                            <input type="file">
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <div class="content btn">
+                <div class="submit">
+                    <input type="button" value="保存">
+                    <input type="button" value="预览">
+                </div>
+            </div>
+        </article>
+    </main>
+    <!-- 底部版权 -->
+    <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

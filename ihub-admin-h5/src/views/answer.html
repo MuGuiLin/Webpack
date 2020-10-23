@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= htmlWebpackPlugin.options.title%>
+    </title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <%= require('html-loader!./header.html') %>
+        <!-- 主体 -->
+        <main>
+            <!-- 左侧菜单-->
+            <%= require('html-loader!./aside.html') %>
+                <!-- 右侧主体 -->
+                <article class="pjax">
+                    <div class="article">
+                        <div class="mbs">
+                            <h3>新建答题</h3>
+                            <ul>
+                                <li>
+                                    <a href="">模板</a>
+                                </li>
+                                <span>></span>
+                                <li>
+                                    <a href="">答题管理</a>
+                                </li>
+                                <span>></span>
+                                <li>新建答题</li>
+                            </ul>
+                        </div>
+                        <div class="content">
+                            <div class="items">
+                                <div class="page-header">
+                                    <h3>基础设置
+                                        <small>基础设置均为必填/选项。</small>
+                                    </h3>
+                                </div>
+                                <div class="list-item">
+                                    <label>答题模板名称</label>
+                                    <li>
+                                        <input type="text" maxlength="35" placeholder="必填项">
+                                        <i>0/35</i>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>答题顺序</label>
+                                    <li class="checkeds">
+                                        <span class="checked on">
+                                            <input type="radio" name="vote" checked="checked">
+                                        </span>无逻辑答题
+                                        <span class="checked">
+                                            <input type="radio" name="vote">
+                                        </span>递进式答题
+                                        <i>必须答对前一题才可继续</i>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>答题模式</label>
+                                    <li class="checkeds">
+                                        <span class="checked on" v-on:click="option(0)">
+                                            <input type="radio" name="vote1" checked>
+                                        </span>单选
+                                        <span class="checked" v-on:click="option(1)">
+                                            <input type="radio" name="vote1">
+                                        </span>多选
+                                        <span class="checked" v-on:click="option(2)">
+                                            <input type="radio" name="vote1">
+                                        </span>混合
+                                        <i>逐题设置</i>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content addList">
+                            <div class="items" v-if="answerData" v-for="(item,index) in answerData">
+                                <div class="page-header" v-if="index==0">
+                                    <h3>设置问题及答案
+                                        <small>请在选项前设置正确答案；题干图片最佳尺寸：672*300像素，选项图片最佳尺寸：284*284像素，大小不超过1M。</small>
+                                    </h3>
+                                </div>
+                                <div class="list-item">
+                                    <label>
+                                        <i v-cloak>{{index+1}}.</i>问题</label>
+                                    <li>
+                                        <input type="text" name="'title['+index+'][name]'" maxlength="35">
+                                        <i>0/35</i>
+                                    </li>
+                                    <p class="handled">
+                                        <span class="file"></span>
+                                        <input type="file" class="imgFile">
+                                        <input type="hidden" name="'title['+index+'][name_img]'">
+                                        <span class="color setColor">
+                                            <input type="text" name="'title['+index+'][name_color]'">
+                                            <i></i>
+                                        </span>
+                                    </p>
+                                    <p class="showDel">
+                                        <span class="up">收起</span>
+                                        <span class="del" v-on:click="optionDel(index)" v-if="index>0">删除</span>
+                                    </p>
+                                </div>
+                                <div class="list-content">
+                                    <div v-cloak class="list-item" v-if="options">
+                                        <label>答题模式</label>
+                                        <li class="checkeds">
+                                            <span :class="{checked:1,on:item.type==0}" v-on:click="sonOption(index,0)">
+                                                <input type="radio" :name="'vote'+index" :checked="item.type==0">
+                                            </span>单选
+                                            <span :class="{checked:1,on:item.type==1}" v-on:click="sonOption(index,1)">
+                                                <input type="radio" :name="'vote'+index" :checked="item.type==1">
+                                            </span>多选
+                                        </li>
+                                    </div>
+                                    <div class="list-item" v-for="(items,n) in item.option">
+                                        <!-- 单选多选 -->
+                                        <label v-cloak v-if="!options" :class="{checkeds:1,box:!checkedRadio}">
+                                            <span class="listRadio" v-if="checkedRadio"><input type="radio" :name="'title['+index+'][option][][right]'" :checked="items.right==0"></span>
+                                            <span class="listChecked" v-if="!checkedRadio"><input type="checkbox" :name="'title['+index+'][option]['+n+'][right]'" :checked="items.right==1"></span>
+                                            选项&nbsp;{{lower(n)}}
+                                        </label>
+                                        <!-- 混合模式 -->
+                                        <label v-cloak v-if="options" :class="{checkeds:1,box:item.type==1}">
+                                            <span class="listRadio" v-if="item.type==0"><input type="radio" :name="'title['+index+'][option][][right]'" :checked="items.right==0"></span>
+                                            <span class="listChecked" v-if="item.type==1"><input type="checkbox" :name="'title['+index+'][option]['+n+'][right]'" :checked="items.right==1"></span>
+                                            选项&nbsp;{{lower(n)}}
+                                        </label>
+                                        <li>
+                                            <input type="text" name="'title['+index+'][option]['+n+'][name]'" maxlength="35">
+                                            <i>0/35</i>
+                                            <span></span>
+                                        </li>
+                                        <p class="handled">
+                                            <span class="file"></span>
+                                            <input type="file" class="imgFile">
+                                            <input type="hidden" name="'title['+index+'][option]['+n+'][image]'">
+                                            <span class="color setColor">
+                                                <input type="text" name="'title['+index+'][option]['+n+'][name_color]'">
+                                                <i></i>
+                                            </span>
+                                            <span class="add" v-on:click="addSelect(index,n)"></span>
+                                            <span class="del" v-on:click="selectDel(index,n)"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="items">
+                                <p class="addVote" v-on:click="addAnswer">
+                                    <span>添加答题项</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="items">
+                                <div class="page-header">
+                                    <h3>相关信息设置
+                                        <small>背景图建议尺寸：960*1704像素，格式png、jpeg、jpg、gif，大小不超过1M。</small>
+                                    </h3>
+                                </div>
+                                <div class="list-item">
+                                    <label>答对文字提示</label>
+                                    <li>
+                                        <input type="text" placeholder="亲~你好机智啊！" maxlength="35">
+                                        <i>0/35</i>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>答错文字提示</label>
+                                    <li>
+                                        <input type="text" placeholder="亲~好可惜哦，请继续努力~~" maxlength="35">
+                                        <i>0/35</i>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>显示答题结果</label>
+                                    <li class="showBtn">
+                                        <span></span>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>自定义按钮</label>
+                                    <li class="setupButtn">
+                                        <span class="no">
+                                            <input type="text" placeholder="设置按钮文字">
+                                        </span>
+                                        <span class="setColor">
+                                            <input type="text" placeholder="按钮文字颜色">
+                                        </span>
+                                        <span class="setColor">
+                                            <input type="text" placeholder="按钮背景色">
+                                        </span>
+                                    </li>
+                                </div>
+                                <div class="list-item">
+                                    <label>答题页背景图</label>
+                                    <li class="upBg">
+                                        <span></span>
+                                        <input type="file">
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content btn">
+                            <div class="submit">
+                                <input type="button" value="保存">
+                                <input type="button" value="预览">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+        </main>
+        <!-- 底部版权 -->
+        <%= require('html-loader!./footer.html') %>
+</body>
+
+</html>

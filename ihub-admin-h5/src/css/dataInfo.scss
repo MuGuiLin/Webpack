@@ -1,0 +1,18 @@
+/*
+ * @Author: LiuGuangMing 
+ * @Date: 2018-08-30 16:02:57 
+ * @Last Modified by: LiuGuangMing
+ * @Last Modified time: 2018-08-30 17:22:39
+ */
+ main{
+    article{
+        .content{
+            margin: 0px;
+            padding: 0px;
+        }
+    } 
+ }
+ #iframe{
+    width: 100%;
+    min-height: calc(100vh - 306px);
+}
